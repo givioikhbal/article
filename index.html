@@ -1,0 +1,174 @@
+<!-- NAMA: Givio Ikhbaludhuda -->
+<!-- NIM: 240401010056 -->
+<!-- KELAS: IF203 -->
+<!-- MATKUL: Pemrograman Web I -->
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Setup Administration Profile</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/style/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="bg-dark text-dark">
+  <audio id="bg-music" src="/assets/audio/background-music.mp3" autoplay loop style="display:none"></audio>
+  <button id="toggle-mute" class="btn btn-sm btn-light position-fixed" style="top: 15px; right: 20px; z-index: 2000;">
+    🔊
+  </button>
+<script>
+  const audio = document.getElementById('bg-music');
+  const btn = document.getElementById('toggle-mute');
+
+  function updateIcon() {
+    btn.textContent = audio.muted ? '🔇' : '🔊';
+  }
+
+  btn.addEventListener('click', function() {
+    audio.muted = !audio.muted;
+    updateIcon();
+  });
+
+  updateIcon();
+</script>
+
+  <!-- Header -->
+<header>
+  <h1 class="fixed-top bg-dark text-white w-100 text-center m-0" style="height:60px; line-height:60px; z-index:1030;">FortiGate Guide</h1>
+  <nav class="fixed-top bg-secondary w-100" style="top:60px; z-index:1029;">
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#">Article</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="index-aboutme.html">About Me</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="#contact">Contact</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+  <!-- Artikel -->
+  <article class="container mb-5" style="margin-top:120px;">
+    <div class="article-box">
+      <h1>Cara Membuat dan Mengatur Administrator Profile pada FortiGate Firewall</h1>
+      <p class="text-muted small mb-3">Ditulis oleh <strong>Givio Ikhbaludhuda</strong> | 21 Juli 2025</p>
+      <img src="/assets/images/fgt-60f.png" class="img-fluid rounded mb-3 d-block mx-auto" alt="FortiGate 60F Series">
+      <p>
+        Secara default, FortiGate memiliki akun administrator dengan nama pengguna <i>admin</i> dan tanpa kata sandi. Untuk mencegah akses tidak sah ke FortiGate, akun ini harus dilindungi dengan kata sandi. Administrator tambahan dapat ditambahkan untuk berbagai fungsi, masing-masing dengan nama pengguna, kata sandi, dan serangkaian hak akses yang unik.
+      </p>
+      <h4>Administrator profiles</h4>
+      <p>Administrator Profile menentukan apa yang dapat dilakukan administrator saat masuk ke FortiGate. Saat Anda membuat akun administrator, Anda juga menetapkan profil administrator yang menentukan apa yang dapat dilihat administrator. Tergantung pada jenis pekerjaan, tingkat akses, atau senioritas administrator, Anda dapat mengizinkan mereka untuk melihat dan mengonfigurasi sebanyak atau sesedikit yang diperlukan.</p>
+      <p>Secara default, FortiGate memiliki akun administrator admin yang menggunakan profil <span class="code-block">super_admin</span>. Berikut jenis-jenis profile yang ada pada FortiGate:</p>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Profile</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="code-block">super_admin</span></td>
+            <td>Profil <span class="code-block">super_admin</span> menawarkan akses read dan write penuh ke semua komponen FortiOS, termasuk kemampuan untuk mengelola administrator lain dan melakukan fungsi penting seperti mencadangkan dan memulihkan konfigurasi.</td>
+          </tr>
+          <tr>
+            <td><span class="code-block">prof_admin</span></td>
+            <td>Profil <span class="code-block">prof_admin</span>, meskipun menyediakan akses administratif yang luas, secara umum tidak mencakup kemampuan untuk mengatur ulang kata sandi untuk administrator lain atau, dalam versi FortiOS yang lebih baru, mungkin tidak mengizinkan perintah diagnosis secara default.</td>
+          </tr>
+          <tr>
+            <td><span class="code-block">read_user</span></td>
+            <td>Profil <span class="code-block">read_user</span> (atau read-only) hanya memberikan akses lihat saja ke konfigurasi dan status FortiGate, dan tidak dapat membuat perubahan apa pun.</td>
+          </tr>
+        </tbody>
+      </table>
+
+    <section>
+      <h4>Penjelasan Detail Profil:</h4>
+      <p><span class="code-block">super_admin</span>: </p>
+      <ul>
+        <li>Memberikan akses penuh ke semua fitur, pengaturan, dan fungsi FortiGate.</li>
+        <li>Dapat mengelola semua akun administrator, termasuk membuat, menghapus, dan memodifikasinya.</li>
+        <li>Penting untuk tugas-tugas penting seperti backup dan restore.</li>
+        <li>Installation & Configuration of Huawei Network Devices</li>
+        <li>Akun administrator default pada FortiGate baru menggunakan profil ini.</li>
+      </ul>
+      <p><span class="code-block">prof_admin</span>: </p>
+      <ul>
+        <li>Menawarkan kemampuan administratif yang signifikan, tetapi dengan beberapa keterbatasan dibandingkan dengan <span class="code-block">super_admin</span>.</li>
+        <li>Perbedaan utama yang sering disebutkan adalah ketidakmampuan untuk mengatur ulang kata sandi administrator lain.</li>
+        <li>Pada versi FortiOS terbaru (misalnya, 7.4.8 dan yang lebih baru), perintah diagnosis mungkin dinonaktifkan secara default untuk <span class="code-block">prof_admin</span>.</li>
+        <li>Cocok untuk peran administratif yang memerlukan akses luas tetapi tidak memerlukan kontrol penuh atas akun admin lain atau tools diagnostik tingkat lanjut tertentu.</li>
+      </ul>
+      <p><span class="code-block">read_user</span>: </p>
+      <ul>
+        <li>Menyediakan akses read-only ke antarmuka FortiGate dan pengaturannya.</li>
+        <li>Pengguna dengan profil ini dapat melihat konfigurasi, log, dan status, tetapi tidak dapat melakukan perubahan atau modifikasi apa pun pada sistem.</li>
+        <li>Ideal untuk peran pemantauan, audit, atau pemecahan masalah terbatas.</li>
+        <li>Profil ini dapat dibuat dan dikustomisasi untuk memberikan akses ke area tertentu di FortiGate.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h4>Membuat Profil secara Custom</h4>
+        <video controls width="100%" class="mb-3 rounded">
+         <source src="/assets/video/admin-profile.mp4" type="video/mp4">
+        </video>
+      <p><strong>Untuk membuat profil di GUI:</strong> </p>
+      <ol>
+        <li>Buka <i>System</i> > <i>Admin Profiles.</i></li>
+        <li>Pilih <i>Create New.</i></li>
+        <li>Konfigurasikan pengaturan berikut:</li>
+        <ul>
+          <li>Name.</li>
+          <li>Access permissions.</li>
+          <li>Override idle timeout.</li>
+        </ul>
+        <li>Pilih <i>OK.</i></li>
+      </ol>
+    </section>
+
+    <section>
+      <h4>Tambahkan Local Administrator</h4>
+      <p>Secara default, FortiGate memiliki satu super <i>admin</i> bernama admin. Anda dapat membuat lebih banyak akun administrator dengan hak istimewa yang berbeda.</p>
+      <video controls width="100%" class="mb-3 rounded">
+         <source src="/assets/video/administrator.mp4" type="video/mp4">
+        </video>
+      <p><strong>Untuk membuat profil di GUI:</strong> </p>
+      <ol>
+        <li>Buka <i>System</i> > <i>Administrators.</i></li>
+        <li>Pilih <i>Create New</i> > <i>Administrator.</i></li>
+        <li>Tentukan <i>Username.</i></li>
+        <p></p>
+        <p><i>Jangan gunakan karakter < > ( ) # " ' pada nama pengguna administrator.</i></p>
+        <p><i>Penggunaan karakter ini pada nama pengguna administrator dapat menimbulkan kerentanan cross-site scripting (XSS).</i></p>
+        <li>Tetapkan <i>Type</i> ke <i>Local User.</i></li>
+        <li>Tetapkan kata sandi dan bidang lainnya.</li>
+        <li>Pilih <i>OK.</i></li>
+      </ol>
+      <p>Setelah melakukan langkah-langkah di atas, cobalah untuk logout dan login menggunakan akun administrator yang telah dibuat.</p>
+      <p>Kira-kira seperti itulah cara untuk membuat dan mengatur administrator profile pada FortiGate Firewall.</p>
+    </section>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-secondary text-white text-center py-3">
+    <h1>CONTACT</h1>
+    <div class="container text-center contact">
+      <a href="https://www.instagram.com/gvo.i/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/givio-ikhbaludhuda-7a9967178/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://www.youtube.com/@GivioIkhbal" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+    <p class="mb-0 watermark">&copy; Created by <a href="#">@gvo.i</a></p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

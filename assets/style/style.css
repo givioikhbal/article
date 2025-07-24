@@ -1,0 +1,42 @@
+body {
+  background-image: url(/assets/images/background-design.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+.nav-link:hover {
+  background-color: #343a40;
+  color: #fff !important;
+  transition: background 0.2s;
+}
+.code-block {
+  font-family: monospace;
+  background-color: #9b9999;
+  padding: 2px 5px;
+  border-radius: 4px;
+  color: #000;
+}
+.article-box {
+  background-color: rgba(255,255,255,0.85);  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.contact a {
+  color: white;
+  font-size: 30px;
+  margin: 0px 5px 0 5px; 
+  transition: color 0.2s;
+}
+.contact a:hover {
+  color: #cb5c6fff;
+}
+.watermark {
+  padding-top: 20px;
+}
+.watermark a:hover{
+  color: #cb5c6fff;
+}
+.watermark a {
+  color: white;
+}

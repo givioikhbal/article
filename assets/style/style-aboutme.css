@@ -1,0 +1,57 @@
+body {
+  background-image: url(/assets/images/background-design.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.profile h2 {
+  color: white;
+}
+.profile h4 {
+  color: white;
+}
+.profile p {
+  color: white;
+}
+.nav-link:hover {
+  background-color: #343a40;
+  color: #fff !important;
+  transition: background 0.2s;
+}
+.article-box {
+  background-color: #333438FF;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.article-box2 {
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.contact a {
+  color: white;
+  font-size: 30px;
+  margin: 0px 5px 0 5px; 
+  transition: color 0.2s;
+}
+.contact a:hover {
+  color: #cb5c6fff;
+}
+.watermark {
+  padding-top: 20px;
+}
+.watermark a:hover{
+  color: #cb5c6fff;
+}
+.watermark a {
+  color: white;
+}
